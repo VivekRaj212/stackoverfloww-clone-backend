@@ -11,7 +11,7 @@ export const signup= async (req,res)=> {
         if(existingUser)
         {
             console.log(existingUser);
-          return res.status(404).json({message: "User already existed"});
+            return res.status(404).json({message: "User already existed"});
           
         }
 
@@ -33,6 +33,7 @@ export const login= async (req,res)=> {
         const userExists= await users.findOne({email});
         if(!userExists)
         {
+            console.log("User not exists");
             return res.status(404).json({message: "User don't exist"});
         }
         const isPassword= await bcrypt.compare(password,userExists.password);
